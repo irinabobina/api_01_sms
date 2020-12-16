@@ -17,8 +17,8 @@ def get_status(user_id):
         'fields': 'online',
     }
     response = requests.post('https://api.vk.com/method/users.get', params=params).json()['response']
-    status = response[0].get('online') 
-    return status  # Верните статус пользователя в ВК
+    status_online = response[0].get('online') 
+    return status_online  # Верните статус пользователя в ВК
 
 
 def sms_sender(sms_text):
