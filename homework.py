@@ -16,8 +16,9 @@ def get_status(user_id):
         'access_token': os.getenv('ACCESS_TOKEN'),
         'fields': 'online',
     }
-    status = requests.post('https://api.vk.com/method/users.get', params=params)
-    return status.json()['response'][0].get('online')  # Верните статус пользователя в ВК
+    response = requests.post('https://api.vk.com/method/users.get', params=params).json()['response']
+    status = response[0].get('online') 
+    return status  # Верните статус пользователя в ВК
 
 
 def sms_sender(sms_text):
@@ -25,7 +26,7 @@ def sms_sender(sms_text):
     account_sid = "ACb3f3d0a8a0cfad3c6f59b41cec333be6"
     auth_token = "df0a25b80324ee75bf19663b5a15eb44"
     client = Client(account_sid, auth_token)
-    
+
     message = client.messages.create(
                               body= sms_text,
                               from_=os.getenv('NUMBER_FROM'),
