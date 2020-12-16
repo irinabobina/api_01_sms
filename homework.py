@@ -31,8 +31,10 @@ def sms_sender(sms_text):
 
     message = client.messages.create(
                               body= sms_text,
-                              from_=os.getenv('NUMBER_FROM'),
-                              to=os.getenv('NUMBER_TO')
+                              from_= '+19708661008',
+                              to= '+79503657819'
+                              #from_=os.getenv('NUMBER_FROM'),
+                              #to=os.getenv('NUMBER_TO')
                           )
     return message.sid  
 
