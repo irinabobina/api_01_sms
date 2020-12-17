@@ -15,8 +15,11 @@ def get_status(user_id):
         'fields':'online'
     }
     url = 'https://api.vk.com/method/users.get'
-    status = requests.post(url=url, params=params)
-    return status.json()['response'][0]['online'] 
+    resp = requests.post(url=url, params=params).json()
+    if 'response' not in resp:
+        return 'Ошибка, нет ключа'
+    status_online = resp['response'][0].get('online')
+    return status_online
 
 
 
